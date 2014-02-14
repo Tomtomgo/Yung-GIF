@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "Yung GIF",
+  "description": "Top 25 gifs on reddit - one click away.",
+  "version": "0.1",
+  "permissions": [
+      "tabs"
+    ],
+  "background": {
+    "persistent": false,
+    "scripts": ["jquery-2.1.0.min.js", "bg.js"]
+  },
+  "browser_action": {
+    "default_icon": "crapicon.png",
+    "tooltip": "Yolo!"
+  }
+}

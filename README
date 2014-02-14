@@ -1,0 +1,6 @@
+HOWTO INSTALL
+
+1. extract to folder $folder_name
+2. goto chrome://extensions
+3. click developer mode, 'load unpacked extension...'
+4. find $folder_name, click ok, enable Yung GIF
