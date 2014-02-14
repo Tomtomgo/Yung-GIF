@@ -7,12 +7,13 @@ window.YUNG_GIF = {}
 window.YUNG_GIF.icons = {one: 'crapicon.png', omg: 'omgicon.png', sad: 'sadboy.png'};
 window.YUNG_GIF.seen = []
 window.YUNG_GIF.unseen = []
+window.YUNG_GIF.running = null
 
 // If icon is clicked, check for new and show.
-chrome.browserAction.onClicked.addListener(function(){check_new(true)});
+chrome.browserAction.onClicked.addListener(function(){window.YUNG_GIF.check_new(true)});
 
 // bruk() shows unseen gifs.
-function bruk(){
+window.YUNG_GIF.bruk = function(){
     while(window.YUNG_GIF.unseen.length > 0){
         gif_url = window.YUNG_GIF.unseen.pop()
         chrome.tabs.create({url: gif_url});
@@ -24,7 +25,7 @@ function bruk(){
 }
 
 // Check Reddit for new content and notify if that's the case
-function check_new(do_bruk){
+window.YUNG_GIF.check_new = function(do_bruk){
     $.getJSON('http://api.reddit.com/r/gifs', function(yolo){
 
         // Iterate in reverse order so the last opened tab is always the hottest
@@ -46,7 +47,7 @@ function check_new(do_bruk){
         }
         
         // Show new GIFs if requested
-        if(do_bruk){bruk();}
+        if(do_bruk){window.YUNG_GIF.bruk();}
 
     }).error(function(){
         chrome.browserAction.setIcon({path: window.YUNG_GIF.icons.sad});
@@ -54,8 +55,20 @@ function check_new(do_bruk){
     });
 }
 
-// Check one time for new GIFs
-check_new(false)
+window.YUNG_GIF.go = function(){
+    if(!window.YUNG_GIF.running){
+        // Check one time for new GIFs
+        window.YUNG_GIF.check_new(false)
 
-// Every five minutes, check for new GIFs
-setInterval(function(){check_new(false)}, 5*60*1000);
+        // Every five minutes, check for new GIFs
+        window.YUNG_GIF.running = setInterval(function(){window.YUNG_GIF.check_new(false)}, 10000);
+    }
+}
+
+// This sure gets loaded on Chrome startup
+chrome.runtime.onStartup.addListener(function(){
+    window.YUNG_GIF.go()
+});
+
+// This doesn't seem to get loaded on Chrome startup
+window.YUNG_GIF.go()
