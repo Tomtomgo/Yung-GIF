@@ -5,7 +5,8 @@
   "description": "Top 25 gifs on reddit - one click away.",
   "version": "0.1",
   "permissions": [
-      "tabs"
+      "tabs",
+      "storage"
     ],
   "background": {
     "persistent": false,
@@ -13,6 +14,6 @@
   },
   "browser_action": {
     "default_icon": "crapicon.png",
-    "tooltip": "Yolo!"
+    "tooltip": "Let's find GIFs."
   }
 }

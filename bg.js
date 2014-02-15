@@ -1,12 +1,48 @@
 /*
-Yung GIF
-Check latest 25 /r/gifs and reminds you when there's something new, productivity tool.
+    Yung GIF
+    Check latest 25 /r/gifs and reminds you when there's something new, productivity tool.
 */
+
+function Pingu(max_size, name){
+    
+    /*
+        Pingu is a disk-persisted fixed-length fifo buffer. Schnoo schnoo.
+    */
+
+    var me = this;
+    var name = "YUNG_GIF_"+name;
+
+    // exists list already?
+    if(localStorage[name] == undefined){
+        this.lst = [];
+    }else{
+        this.lst = JSON.parse(localStorage[name]);
+    }
+
+    // Array(-like) methods
+    this.push = function(e){
+        if(me.lst.length >= max_size){
+            me.lst.pop();
+        }
+        me.lst.push(e);
+        me.length = me.lst.length;
+        localStorage[name] = JSON.stringify(me.lst);
+    };
+    this.pop = function(){
+        e = me.lst.pop();
+        me.length = me.lst.length;
+        localStorage[name] = JSON.stringify(me.lst);
+        return e;
+    };
+    this.concat = function(e){
+        return me.lst.concat(e.lst);
+    };
+}
 
 window.YUNG_GIF = {}
 window.YUNG_GIF.icons = {one: 'crapicon.png', omg: 'omgicon.png', sad: 'sadboy.png'};
-window.YUNG_GIF.seen = []
-window.YUNG_GIF.unseen = []
+window.YUNG_GIF.seen = new Pingu(100, 'seen')
+window.YUNG_GIF.unseen = new Pingu(25, 'unseen')
 window.YUNG_GIF.running = null
 
 // If icon is clicked, check for new and show.
@@ -34,7 +70,7 @@ window.YUNG_GIF.check_new = function(do_bruk){
                 window.YUNG_GIF.unseen.push(e.data.url)
             }
         });
-        
+                
         // is there something new?
         if(window.YUNG_GIF.unseen.length > 0){
             chrome.browserAction.setIcon({path: window.YUNG_GIF.icons.omg});
@@ -61,7 +97,7 @@ window.YUNG_GIF.go = function(){
         window.YUNG_GIF.check_new(false)
 
         // Every five minutes, check for new GIFs
-        window.YUNG_GIF.running = setInterval(function(){window.YUNG_GIF.check_new(false)}, 10000);
+        window.YUNG_GIF.running = setInterval(function(){window.YUNG_GIF.check_new(false)}, 5*60*1000);
     }
 }
 
