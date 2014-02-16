@@ -19,6 +19,8 @@ function Pingu(max_size, name){
         this.lst = JSON.parse(localStorage[name]);
     }
 
+    this.length = this.lst.length;
+
     // Array(-like) methods
     this.push = function(e){
         if(me.lst.length >= max_size){
