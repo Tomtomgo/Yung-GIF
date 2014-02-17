@@ -4,12 +4,9 @@
 */
 
 function Pingu(max_size, name){
-    
     /*
         Pingu is a disk-persisted fixed-length fifo buffer. Schnoo schnoo.
     */
-
-    var me = this;
     var name = "YUNG_GIF_"+name;
 
     // exists list already?
@@ -20,26 +17,28 @@ function Pingu(max_size, name){
     }
 
     this.length = this.lst.length;
-
-    // Array(-like) methods
-    this.push = function(e){
-        if(me.lst.length >= max_size){
-            me.lst.pop();
-        }
-        me.lst.push(e);
-        me.length = me.lst.length;
-        localStorage[name] = JSON.stringify(me.lst);
-    };
-    this.pop = function(){
-        e = me.lst.pop();
-        me.length = me.lst.length;
-        localStorage[name] = JSON.stringify(me.lst);
-        return e;
-    };
-    this.concat = function(e){
-        return me.lst.concat(e.lst);
-    };
 }
+
+// Array(-like) methods
+Pingu.prototype.push = function(e){
+    if(this.lst.length >= max_size){
+        this.lst.pop();
+    }
+    this.lst.push(e);
+    this.length = this.lst.length;
+    localStorage[name] = JSON.stringify(this.lst);
+};
+
+Pingu.prototype.pop = function(){
+    e = this.lst.pop();
+    this.length = this.lst.length;
+    localStorage[name] = JSON.stringify(this.lst);
+    return e;
+};
+
+Pingu.prototype.concat = function(e){
+    return this.lst.concat(e.lst);
+};
 
 window.YUNG_GIF = {}
 window.YUNG_GIF.icons = {one: 'crapicon.png', omg: 'omgicon.png', sad: 'sadboy.png'};
@@ -77,7 +76,7 @@ window.YUNG_GIF.check_new = function(do_bruk){
         if(window.YUNG_GIF.unseen.length > 0){
             chrome.browserAction.setIcon({path: window.YUNG_GIF.icons.omg});
             chrome.browserAction.setTitle({title: "NEW GIFS FOR U"});
-            chrome.browserAction.setBadgeText({text: "OMG"});
+            chrome.browserAction.setBadgeText({text: window.YUNG_GIF.seen.length});
         }else{
             chrome.browserAction.setIcon({path: window.YUNG_GIF.icons.one});
             chrome.browserAction.setTitle({title: "wait more..."});
