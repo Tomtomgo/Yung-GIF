@@ -83,6 +83,8 @@ window.YUNG_GIF.check_new = function(do_bruk){
             chrome.browserAction.setTitle({title: "wait more..."});
             chrome.browserAction.setBadgeText({text: ""});
         }
+
+        console.log("Checked for new gifs at "+Date())
         
         // Show new GIFs if requested
         if(do_bruk){window.YUNG_GIF.bruk();}
@@ -93,20 +95,14 @@ window.YUNG_GIF.check_new = function(do_bruk){
     });
 }
 
-window.YUNG_GIF.go = function(){
-    if(!window.YUNG_GIF.running){
-        // Check one time for new GIFs
-        window.YUNG_GIF.check_new(false)
-
-        // Every five minutes, check for new GIFs
-        window.YUNG_GIF.running = setInterval(function(){window.YUNG_GIF.check_new(false)}, 5*60*1000);
+// Set alarm to check for new gifs every 5 minutes
+chrome.alarms.create("just_checkin", {periodInMinutes: 5.0});
+chrome.alarms.onAlarm.addListener(function(alarm){
+    if(alarm.name == "just_checkin"){
+        window.YUNG_GIF.check_new(false);
     }
-}
-
-// This sure gets loaded on Chrome startup
-chrome.runtime.onStartup.addListener(function(){
-    window.YUNG_GIF.go()
 });
 
-// This doesn't seem to get loaded on Chrome startup
-window.YUNG_GIF.go()
+console.log("Initialized Yung GIF.");
+
+window.YUNG_GIF.check_new(false);

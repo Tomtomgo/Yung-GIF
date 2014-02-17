@@ -6,7 +6,8 @@
   "version": "0.1",
   "permissions": [
       "tabs",
-      "storage"
+      "storage",
+      "alarms"
     ],
   "background": {
     "persistent": false,
