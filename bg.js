@@ -10,12 +10,8 @@ function Pingu(max_size, name){
     var name = "YUNG_GIF_"+name;
 
     // exists list already?
-    if(localStorage[name] == undefined){
-        this.lst = [];
-    }else{
-        this.lst = JSON.parse(localStorage[name]);
-    }
-
+    this.lst = (localStorage[name] == undefined ? [] : JSON.parse(localStorage[name]));
+    
     this.length = this.lst.length;
 }
 
