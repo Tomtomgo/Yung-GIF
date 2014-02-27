@@ -1,0 +1,74 @@
+<html>
+<head>
+  <title>Yung GIF - more Reddit</title>
+  <style>
+    *{
+      font-size: 30px;
+      font-family: Helvetica, Verdana, Arial, "Comic Sans MS", serif; 
+    }
+    body{
+       text-align: center;
+    }
+    #cntr{
+      width: 550px;
+      margin: 10px auto 10px auto;
+      text-align: left;
+      background-color: #fff;
+      padding: 20px;
+    }
+    .source input, #head span{
+      display: inline-block;
+    }
+    .limit{
+      width: 60px;
+    }
+    .url{
+      width: 400px;
+    }
+    .persisted{
+      border: none;
+      border-bottom: dotted 3px #000;
+    }
+    .persisted:focus{
+      border: none;
+      border-bottom: solid 3px #000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="cntr">
+    <div id="template_source" class="source" style="display:none;">
+      <input type="text" class="url persisted"></input>
+      <input type="text" class="limit persisted"></input>
+      <button class="destroy">&#128552;</button>
+    </div>
+
+    <div id="head">
+      <span class="url">SUBREDDIT</span>
+      <span class="limit">TOP#</span>
+    </div>
+
+    <div id="new_source">
+      <input type="text" placeholder="/r/gifs" class="url"></input>
+      <input type="text" value="25" placeholder="25" class="limit"></input>
+      <button class="add">&#9786;</button>
+    </div>
+    <hr/>
+    
+    <div id="sources"></div>
+
+    <hr/>
+
+    <div>
+      <button id="ok">OK DONE</button>
+    </div>
+  </div>
+
+</body>
+
+<script src="jquery-2.1.0.min.js"></script>
+<script src="i_want_more.js"></script>
+
+</html>
