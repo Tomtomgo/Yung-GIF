@@ -2,8 +2,9 @@
   "manifest_version": 2,
 
   "name": "Yung GIF",
-  "description": "Top 25 gifs on reddit - one click away.",
-  "version": "0.1",
+  "description": "Top 25 gifs (and more) on reddit - one click away.",
+  "version": "0.2",
+  "short_name": "Yung GIF",
   "permissions": [
       "tabs",
       "storage",
