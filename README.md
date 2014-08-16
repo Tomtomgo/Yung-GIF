@@ -6,7 +6,7 @@ Killer lifestyle & happiness productivity tool: all new GIFs under one button.
 
 ### Via Chrome Web Store 😚
 - - - 
-https://chrome.google.com/webstore/detail/yung-gif/pcbjhjfodgcbadhdpponooolomfhlamg
+1. https://chrome.google.com/webstore/detail/yung-gif/pcbjhjfodgcbadhdpponooolomfhlamg
 
 ### Manually 😩
 - - - 
