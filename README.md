@@ -1,14 +1,14 @@
-# Yung GIF
+# Yung GIF 😱
 - - - 
 Killer lifestyle & happiness productivity tool: all new GIFs under one button.
 
-## Installing
+## Installing 
 
-### Via Chrome Web Store
+### Via Chrome Web Store 😚
 - - - 
 https://chrome.google.com/webstore/detail/yung-gif/pcbjhjfodgcbadhdpponooolomfhlamg
 
-### Manually
+### Manually 😩
 - - - 
 1. put all files in folder $folder_name
 2. goto chrome://extensions
