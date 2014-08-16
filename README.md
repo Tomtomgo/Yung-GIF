@@ -1,8 +1,8 @@
 # Yung GIF
 - - - 
-THE killer lifestyle productivity tool. All new GIFs under one button.
+Killer lifestyle & happiness productivity tool: all new GIFs under one button.
 
-## HOWTO Install Yung GIF
+## Installing
 
 ### Via Chrome Web Store
 - - - 
