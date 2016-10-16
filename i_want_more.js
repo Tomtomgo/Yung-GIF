@@ -8,10 +8,10 @@ $(document).ready(function(){
 
   // listeners for creation
   $(document).on('click', "#new_source .add", function(data){
-    source = {'url': $("#new_source .url")[0].value, 
+    source = {'url': $("#new_source .url")[0].value,
               'limit': $("#new_source .limit")[0].value}
     sid = "sources_" + (Math.random() / +new Date()).toString(36).replace(/[^a-z]+/g, '');
-    
+
     set_source(source, sid);
     draw_sources(); // redraw
     $("#new_source .url").val("");
@@ -21,7 +21,7 @@ $(document).ready(function(){
   // listener for editing
   $(document).on('input', "#sources input", function(data){
     sid = $(data.currentTarget).parent().attr('id')
-    source = {'url': $("#"+sid+" .url")[0].value, 
+    source = {'url': $("#"+sid+" .url")[0].value,
               'limit': $("#"+sid+" .limit")[0].value}
     set_source(source, sid)
   });
@@ -39,7 +39,7 @@ $(document).ready(function(){
   })
 
   $(window).on('beforeunload', function(e){
-    chrome.extension.sendMessage('checknow!');
+    chrome.runtime.sendMessage('checknow!');
   })
 });
 
